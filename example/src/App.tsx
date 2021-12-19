@@ -1,10 +1,18 @@
 import React from 'react'
-
-import { ExampleComponent } from 'use-lifecycle'
-import 'use-lifecycle/dist/index.css'
+import { CoolComponent } from './components/cool-component'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const onMount: Function = (element: HTMLElement) =>
+    console.log('[App]: onMount(): ', element)
+  const onUnmount: Function = (element: HTMLElement) =>
+    console.log('[App]: onUnmount(): ', element)
+  const onRender: Function = (element: HTMLElement) =>
+    console.log('[App]: onRender(): ', element)
+  return (
+    <CoolComponent lifecycle={{ onMount, onUnmount, onRender }}>
+      <>Create React Library Example 😄</>
+    </CoolComponent>
+  )
 }
 
 export default App
