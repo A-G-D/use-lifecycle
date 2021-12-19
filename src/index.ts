@@ -55,14 +55,22 @@ class CallbackHandler {
     data.evaluator = (...args: any[]) => {
       const results: Function[] = []
 
-      const result = data.localCallback?.(...args)
-      if (typeof result === 'function') {
-        results.push(result)
-      }
-      for (let i = data.inheritedCallbacks.length - 1; i >= 0; --i) {
-        const result = data.inheritedCallbacks[i]?.(...args)
+      if (typeof data.localCallback === 'object') {
+        data.localCallback.current = args[0]
+      } else {
+        const result = data.localCallback?.(...args)
         if (typeof result === 'function') {
           results.push(result)
+        }
+      }
+      for (let i = data.inheritedCallbacks.length - 1; i >= 0; --i) {
+        if (typeof data.inheritedCallbacks[i] === 'object') {
+          data.inheritedCallbacks[i].current = args[0]
+        } else {
+          const result = data.inheritedCallbacks[i]?.(...args)
+          if (typeof result === 'function') {
+            results.push(result)
+          }
         }
       }
 
@@ -96,7 +104,7 @@ const interceptor = {
     value: Function,
     receiver: object | CallbackHandler
   ) {
-    if (typeof value !== 'function') return false
+    if (typeof value !== 'function' && typeof value !== 'object') return false
 
     const data = Reflect.get(target, key, receiver)
 
