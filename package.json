@@ -1,6 +1,6 @@
 {
   "name": "@react-custom-hooks/use-lifecycle",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "&quot;useLifecycle() Custom React Hook&quot;",
   "author": "A-G-D",
   "license": "MIT",
