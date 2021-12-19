@@ -7,11 +7,11 @@ This custom hook allows easy creation of custom lifecycle events and callbacks f
 ## Install
 
 ```bash
-npm install --save use-lifecycle.js
+npm install --save @react-custom-hooks/use-lifecycle
 ```
 or
 ```bash
-yarn add use-lifecycle.js
+yarn add @react-custom-hooks/use-lifecycle
 ```
 
 ## Example
@@ -61,7 +61,7 @@ export function BaseComponent({
 **cool-component.js**
 ```js
 import {useRef, useEffect} from "react";
-import {useLifecycle} from "use-lifecycle";
+import {useLifecycle} from "@react-custom-hooks/use-lifecycle";
 import {BaseComponent} from "./base-component"
 
 function CoolComponent({
@@ -144,7 +144,6 @@ export function BaseComponent({
 **cool-component.js**
 ```js
 import {useRef, useEffect} from "react";
-import {useLifecycle} from "use-lifecycle";
 import {BaseComponent} from "./base-component"
 
 function CoolComponent({
